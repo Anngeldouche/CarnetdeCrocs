@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carnet interactif</title>
+    <!-- Importation du CSS pour turn.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.css" />
     <style>
         body {
@@ -20,25 +21,28 @@
             background-color: white;
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
             margin: 0 auto;
+            overflow: hidden; /* Cache les pages qui ne sont pas visibles */
         }
         .page {
-            width: 1000px;
-            height: 600px;
+            width: 1000px; /* Largeur fixe */
+            height: 600px; /* Hauteur fixe */
             background-color: white;
             display: inline-block;
             page-break-inside: avoid;
             overflow: hidden;
+            position: relative;
         }
         .page img {
             width: 100%;
-            height: 100%;
+            height: 100%; /* Assure que l'image remplit bien la page */
+            object-fit: contain; /* Garde le ratio de l'image sans la déformer */
         }
     </style>
 </head>
 <body>
 
 <div id="carnet">
-    <!-- Remplacer ces liens par les vôtres si vous avez téléchargé les images localement -->
+    <!-- Pages avec images -->
     <div class="page" id="page1">
         <img src="images/CarnetMims1(1).jpg" alt="Page 1">
     </div>
@@ -68,18 +72,23 @@
     </div>
 </div>
 
-<!-- Importation du script turn.js -->
+<!-- Importation du script turn.js et jQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
     $(document).ready(function() {
-        // Application du carnet interactif
         $('#carnet').turn({
-            width: 1000,
-            height: 600,
-            autoCenter: true,
-            display: 'double' // Afficher les pages en double
+            width: 1000,       // Largeur du carnet
+            height: 600,       // Hauteur du carnet
+            autoCenter: true,  // Centrage automatique du carnet
+            display: 'double', // Afficher les pages en double
+            when: {
+                turning: function(event, page, view) {
+                    // Gérer l'événement de changement de page
+                    console.log('Page ' + page + ' is being turned.');
+                }
+            }
         });
     });
 </script>
