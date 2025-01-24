@@ -16,35 +16,35 @@
             margin: 0;
         }
         #carnet {
-            width: 1000px;  /* Largeur du carnet */
-            height: 600px;  /* Hauteur du carnet */
+            width: 1000px;
+            height: 600px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
             margin: 0 auto;
             overflow: hidden;
         }
         .page {
-            width: 500px;  /* Chaque page a la moitié de la largeur totale */
+            width: 500px;
             height: 600px;
             background-color: white;
             display: inline-block;
             position: relative;
             page-break-inside: avoid;
             overflow: hidden;
-            transform: rotate(90deg);  /* Rotation des pages pour les rendre verticales */
+            transform: rotate(90deg); /* Rotation des pages pour les rendre verticales */
             transform-origin: top left; /* Rotation autour du coin supérieur gauche */
         }
         .page img {
             width: 100%;
             height: 100%;
-            object-fit: cover;  /* Remplissage sans déformation */
+            object-fit: cover;
         }
     </style>
 </head>
 <body>
 
 <div id="carnet">
-    <!-- Pages avec images (2 pages par carnet, côté à côté) -->
+    <!-- Pages avec images (2 pages par carnet, côté à côte) -->
     <div class="page" id="page1">
         <img src="images/CarnetMims1(1).jpg" alt="Page 1">
     </div>
@@ -80,6 +80,7 @@
 
 <script>
     $(document).ready(function() {
+        // On initialise le carnet avec turn.js
         $('#carnet').turn({
             width: 1000,         // Largeur du carnet
             height: 600,         // Hauteur du carnet
